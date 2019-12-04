@@ -1,4 +1,19 @@
-import axios from 'axios'
+class RequestManager {
+    static get(url, headers = {}, params = {}) {
+        const axios = require('axios');
+        return axios.get(url, {
+            headers,
+            params
+        });
+    };
 
-export default class RequestManager {
+    static post(url, body, headers = {}, params = {}) {
+        const axios = require('axios');
+        return axios.post(url, {
+            headers,
+            params
+        });
+    };
 }
+
+export default RequestManager;
