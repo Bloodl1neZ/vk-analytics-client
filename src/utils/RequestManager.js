@@ -9,9 +9,9 @@ class RequestManager {
 
     static post(url, body, headers = {}, params = {}) {
         const axios = require('axios');
-        return axios.post(url, {
+        return axios.post(url, body, {
             headers,
-            params
+            params,
         });
     };
 }

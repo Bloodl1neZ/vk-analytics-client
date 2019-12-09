@@ -9,7 +9,7 @@ class Results extends Component {
     componentDidMount() {
         AnalysisService.getAllResults()
             .then(results => {
-                this.setState({results, isLoading: false});
+                this.setState({isLoading: false});
             })
             .catch(err => {
                 console.error(err);
@@ -29,13 +29,13 @@ class Results extends Component {
                 loading
             </div>);
         }
-        if (results.length === 0) {
-            return (
-                <div>
-                    no results
-                </div>
-            )
-        }
+        // if (results.length === 0) {
+        //     return (
+        //         <div>
+        //             no results
+        //         </div>
+        //     )
+        // }
         return (
             <div>
                 {results}
