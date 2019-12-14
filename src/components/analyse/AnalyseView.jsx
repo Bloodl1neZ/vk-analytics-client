@@ -176,8 +176,8 @@ class AnalyseView extends Component {
             </p>
             <p>Друзья: {Number.isInteger(friends) ? friends : "..."}</p>
             <p>
-              Время анализа: {Number.isInteger(estimation) ? estimation : "..."}{" "}
-              минут
+              Предположительное время анализа: {Number.isInteger(estimation) ? estimation : "..."}{" "}
+              мин.
             </p>
           </Col>
         </>

@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import LogIn from "./components/logIn";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,6 +6,7 @@ import AnalyseContainer from "./components/analyse/AnalyseContainer";
 import ProgressContainer from "./components/progress/ProgressContainer";
 import ResultsContainer from "./components/results/ResultsContainer";
 import MainPageContainer from "./components/mainPage/MainPageContainer";
+import './App.css';
 
 function App() {
     return (

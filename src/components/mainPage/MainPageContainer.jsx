@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MainPageView from "./mainPageView";
+import MainPageView from "./MainPageView";
 import {Redirect} from "react-router-dom";
 
 class MainPageContainer extends Component {
