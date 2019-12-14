@@ -10,6 +10,10 @@ class LocalStorageUtils {
     static getToken = () => {
         return window.localStorage.getItem('token');
     };
+
+    static clearToken() {
+        window.localStorage.removeItem('token');
+    }
 }
 
 export default LocalStorageUtils;

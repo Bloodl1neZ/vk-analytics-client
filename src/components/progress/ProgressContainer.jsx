@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AnalysisService from "../../service/AnalysisService";
 import {Redirect} from "react-router-dom";
 import ProgressView from "./ProgressView";
-
 class ProgressContainer extends Component {
     state = {
         error: false,
@@ -16,7 +15,7 @@ class ProgressContainer extends Component {
                     resultId,
                     progress,
                 });
-                this.timer = setInterval(() => this.updateProgress(id), 2000)
+                setInterval(() => this.updateProgress(id), 2000)
             })
             .catch((err) => {
                 console.error(err);

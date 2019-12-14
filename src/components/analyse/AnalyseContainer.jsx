@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import AnalyseView from "./AnalyseView";
 import VkUserService from "../../service/vk/VkUserService";
 import AnalysisService from "../../service/AnalysisService";
-import { Redirect } from "react-router-dom";
+import {Redirect} from "react-router-dom";
+import LocalStorageUtils from "../../utils/LocalStorageUtils";
 
 class AnalyseContainer extends Component {
   constructor(props) {
@@ -34,53 +35,53 @@ class AnalyseContainer extends Component {
 
   loadProgress = () => {
     AnalysisService.getCurrentProgress()
-      .then(() => {
-        this.setState(prev => ({
-          errors: {
-            ...prev.errors,
-            analysing: true
-          }
-        }));
-      })
-      .catch(() => {
-        this.setState(prev => ({
-          errors: {
-            ...prev.errors,
-            analysing: false
-          }
-        }));
-      });
+        .then(() => {
+          this.setState(prev => ({
+            errors: {
+              ...prev.errors,
+              analysing: true
+            }
+          }));
+        })
+        .catch(() => {
+          this.setState(prev => ({
+            errors: {
+              ...prev.errors,
+              analysing: false
+            }
+          }));
+        });
   };
 
   loadUser = id => {
     this.loadUserInfo(id)
-      .then(() => this.loadFriends(id))
-      .catch(() => {
-        this.setState(prev => ({
-          errors: {
-            ...prev.errors,
-            user: true
-          }
-        }));
-      });
+        .then(() => this.loadFriends(id))
+        .catch(() => {
+          this.setState(prev => ({
+            errors: {
+              ...prev.errors,
+              user: true
+            }
+          }));
+        });
   };
 
   handleAnalyse = event => {
     event.preventDefault();
     console.log("analyse");
-    const { errors, userId, posts, photos } = this.state;
+    const {errors, userId, posts, photos} = this.state;
     if (Object.values(errors).includes(true)) {
       return;
     }
     AnalysisService.analyse(userId, posts, photos)
-      .then(({ id }) => {
-        this.setState({
-          progressId: id
+        .then(({id}) => {
+          this.setState({
+            progressId: id
+          });
+        })
+        .catch(err => {
+          console.error(err);
         });
-      })
-      .catch(err => {
-        console.error(err);
-      });
   };
 
   areSettingsValid = (photos, posts) => {
@@ -96,7 +97,7 @@ class AnalyseContainer extends Component {
     if (!Number.isInteger(photos)) {
       return;
     }
-    const { posts, user } = this.state;
+    const {posts, user} = this.state;
     this.setState(prev => ({
       photos,
       errors: {
@@ -113,7 +114,7 @@ class AnalyseContainer extends Component {
     if (!Number.isInteger(posts)) {
       return;
     }
-    const { photos, user } = this.state;
+    const {photos, user} = this.state;
     this.setState(prev => ({
       posts,
       errors: {
@@ -197,22 +198,27 @@ class AnalyseContainer extends Component {
       errors,
       progressId
     } = this.state;
-    const settings = { posts, photos };
+    if (!LocalStorageUtils.getToken()) {
+      return (
+          <Redirect to={'/'}/>
+      )
+    }
+    const settings = {posts, photos};
     if (progressId) {
-      return <Redirect to={"/progress"} />;
+      return <Redirect to={"/progress"}/>;
     }
     return (
-      <AnalyseView
-        onPhotosChange={this.handlePhotosChange}
-        onPostsChange={this.handlePostsChange}
-        onUserIdChange={this.handleUserIdChange}
-        settings={settings}
-        userId={userId}
-        user={user}
-        errors={errors}
-        estimation={estimation}
-        onAnalyse={this.handleAnalyse}
-      />
+        <AnalyseView
+            onPhotosChange={this.handlePhotosChange}
+            onPostsChange={this.handlePostsChange}
+            onUserIdChange={this.handleUserIdChange}
+            settings={settings}
+            userId={userId}
+            user={user}
+            errors={errors}
+            estimation={estimation}
+            onAnalyse={this.handleAnalyse}
+        />
     );
   }
 }
