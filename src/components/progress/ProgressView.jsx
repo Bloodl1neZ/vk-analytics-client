@@ -7,7 +7,7 @@ class ProgressView extends Component {
         const {progress} = this.props;
         return (
             <>
-                <Header/>
+                <Header progress={false}/>
                 <div className="text-center lead absolute-center">
                     <div className="m-auto">
                         <Spinner animation="border" role="status">

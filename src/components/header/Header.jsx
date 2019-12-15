@@ -4,11 +4,25 @@ import logo from "../../img/logo/vk.png";
 import LocalStorageUtils from "../../utils/LocalStorageUtils";
 import getUrl from "../../utils/LocationUtils";
 import {Redirect} from "react-router-dom";
+import AnalysisService from "../../service/AnalysisService";
 
 class Header extends Component {
     state = {
         logOut: false,
+        progress: false,
+        processing: false,
+        results: false,
     };
+
+    componentDidMount() {
+        AnalysisService.getCurrentProgress()
+            .then(() => {
+                this.setState({
+                    processing: true,
+                })
+            }).catch(() => {
+        });
+    }
 
     renderLogInfo = () => {
         if (LocalStorageUtils.getToken()) {
@@ -27,6 +41,12 @@ class Header extends Component {
         return <Button variant="primary" className={"float-right"} size="sm" href={url}>Войти через ВКонтакте</Button>
     };
 
+    onResults = () => {
+        this.setState({
+            results: true,
+        })
+    };
+
     onLogOut = () => {
         LocalStorageUtils.clearToken();
         this.setState({
@@ -34,10 +54,16 @@ class Header extends Component {
         });
     };
 
+    onProgress = () => {
+        this.setState({
+            progress: true
+        });
+    };
+
 
     render() {
-        if (this.state.logOut) {
-            return (<Redirect to={'/'}/>)
+        if (this.state.progress && this.props.progress) {
+            return (<Redirect to={'/progress'}/>)
         }
         return (
             <Navbar bg="dark" variant="dark">
@@ -50,7 +76,10 @@ class Header extends Component {
                             height="30"
                             className="d-inline-block align-top"
                         />
-                        <span className={"ml-2"}>Analysis</span>
+                        <span className={"mx-2"}>Analysis</span>
+                        {this.renderResults()}
+                        {this.renderSpinner()}
+
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                     <Navbar.Collapse className="justify-content-end">
@@ -61,6 +90,24 @@ class Header extends Component {
                 </Container>
             </Navbar>
         );
+    }
+
+    renderSpinner = () => {
+        if (this.state.processing && this.props.progress) {
+            return (
+                <span className={"mx-2"}><Button onClick={this.onProgress} variant="primary" size="sm"
+                                                 href={'/progress'}>Текущий
+                анализ</Button>
+                </span>);
+        }
+    };
+
+    renderResults = () => {
+        return (
+            <span className={"mx-2"}>
+            <Button onClick={this.onResults} variant={"primary"} size={"sm"} href={"/results"}>Результаты
+                анализов</Button>
+            </span>);
     }
 }
 

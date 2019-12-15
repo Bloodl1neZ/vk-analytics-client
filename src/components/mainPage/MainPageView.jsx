@@ -12,7 +12,7 @@ class MainPageView extends Component {
 
         return (
             <>
-                <Header/>
+                <Header progress={true}/>
                 <div className={'lead'}>
                     <Container>
                         <Row>
@@ -35,41 +35,41 @@ class MainPageView extends Component {
                         </Row>
                         <div className="py-5">
                             <Row>
-                                <Col lg={5}>
+                                <Col md={5}>
                                     <img src={addressLineVk} alt="address-line"/>
                                 </Col>
-                                <Col lg={7}>
+                                <Col md={7}>
                                     <p>1. Вводим id пользователя из адресной строки.</p>
                                 </Col>
                             </Row>
                         </div>
                         <div className="py-5">
                             <Row>
-                                <Col lg={7}>
+                                <Col md={7}>
                                     <p>2. Настраиваем количество первых постов
                                         и фотографий, которые будем проверять.</p>
                                 </Col>
-                                <Col lg={5}>
+                                <Col md={5}>
                                     <img src={settings} alt="settings"/>
                                 </Col>
                             </Row>
                         </div>
                         <div className="py-5">
                             <Row>
-                                <Col lg={5}>
+                                <Col md={5}>
                                     <img src={analysis} alt="analysing"/>
                                 </Col>
-                                <Col lg={7}>
+                                <Col md={7}>
                                     <p>3. Производится анализ друзей введенного пользователя.</p>
                                 </Col>
                             </Row>
                         </div>
                         <div className="py-5">
                             <Row>
-                                <Col lg={7}>
+                                <Col md={7}>
                                     <p>4. Profit! Теперь можете посмотреть, кого "лайкал" пользователь.</p>
                                 </Col>
-                                <Col lg={5}>
+                                <Col md={5}>
                                     <img src={result} alt="result"/>
                                 </Col>
                             </Row>

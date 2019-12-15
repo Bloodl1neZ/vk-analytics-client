@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AnalyseResult from "./AnalyseResult";
-import {Accordion} from "react-bootstrap";
+import {Accordion, Button, Col, Container, Row} from "react-bootstrap";
+import Header from "../header/Header";
 
 class ResultsView extends Component {
     render() {
@@ -10,13 +11,38 @@ class ResultsView extends Component {
                                   likedUsers={this.sortLikedUsersDesc(likedUsers)} index={index}/>
         });
         return (
-            <div className={'lead'}>
-                <Accordion defaultActiveKey={0}>
-                    {res}
-                </Accordion>
-            </div>
+            <>
+                <Header progress={true}/>
+                <div className={'lead'}>
+                    <Container>
+                        <div className={'py-4'}>
+                            <Row>
+                                {this.renderContent(res)}
+                            </Row>
+                        </div>
+                    </Container>
+                </div>
+            </>
         );
     }
+
+    renderContent = (res) => {
+        if (res.length === 0) {
+            return (<Col className={'text-center m-0'}>
+                <p>Список анализов пуст</p>
+                <div className={'py-3'}>
+                    <Button variant={"primary"} onClick={
+                        this.props.toAnalyse
+                    } size={"lg"}>Анализировать</Button>
+                </div>
+            </Col>)
+        }
+        return (<Col lg={7} xs={12} className={'m-auto'}>
+            <Accordion defaultActiveKey={0}>
+                {res}
+            </Accordion>
+        </Col>);
+    };
 
     sortLikedUsersDesc = likedUsers => {
         return likedUsers.sort((first, second) => {
