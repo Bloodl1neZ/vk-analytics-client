@@ -103,11 +103,13 @@ class Header extends Component {
     };
 
     renderResults = () => {
-        return (
-            <span className={"mx-2"}>
+        if (LocalStorageUtils.getToken()) {
+            return (
+                <span className={"mx-2"}>
             <Button onClick={this.onResults} variant={"primary"} size={"sm"} href={"/results"}>Результаты
                 анализов</Button>
             </span>);
+        }
     }
 }
 
