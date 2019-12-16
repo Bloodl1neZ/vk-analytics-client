@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AnalysisService from "../../service/AnalysisService";
 import {Redirect} from "react-router-dom";
 import ProgressView from "./ProgressView";
+
 class ProgressContainer extends Component {
     state = {
         error: false,
@@ -52,7 +53,7 @@ class ProgressContainer extends Component {
         }
         if (resultId) {
             return (
-                <Redirect to={'/results}'}/>
+                <Redirect to={'/results'}/>
             )
         }
         return (

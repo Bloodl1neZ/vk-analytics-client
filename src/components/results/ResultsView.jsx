@@ -31,9 +31,7 @@ class ResultsView extends Component {
             return (<Col className={'text-center m-0'}>
                 <p>Список анализов пуст</p>
                 <div className={'py-3'}>
-                    <Button variant={"primary"} onClick={
-                        this.props.toAnalyse
-                    } size={"lg"}>Анализировать</Button>
+                    <Button variant={"primary"} href={"/analyse"} size={"lg"}>Анализировать</Button>
                 </div>
             </Col>)
         }
