@@ -29,7 +29,7 @@ class AnalyseResult extends Component {
                                 </Col>
                                 <Col>
                                     <p className={'text-right mb-1'}
-                                       xs={6}>{date.getDay()}/{date.getMonth() + 1}/{1900 + date.getYear()} {date.getHours()}:{date.getMinutes()}</p>
+                                       xs={6}>{date.getDate()}/{date.getMonth() + 1}/{1900 + date.getYear()} {date.getHours()}:{date.getMinutes()}</p>
                                 </Col>
                             </Row>
                         </Container>
