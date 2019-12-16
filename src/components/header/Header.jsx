@@ -66,7 +66,8 @@ class Header extends Component {
             return (<Redirect to={'/progress'}/>)
         }
         return (
-            <Navbar bg="dark" variant="dark">
+
+            <Navbar bg="dark" variant="dark" expand={"lg"}>
                 <Container>
                     <Navbar.Brand href="/">
                         <img
@@ -77,13 +78,14 @@ class Header extends Component {
                             className="d-inline-block align-top"
                         />
                         <span className={"mx-2"}>Analysis</span>
-                        {this.renderResults()}
-                        {this.renderSpinner()}
+
 
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
+                            {this.renderResults()}
+                            {this.renderSpinner()}
                             {this.renderLogInfo()}
                         </Navbar.Text>
                     </Navbar.Collapse>
