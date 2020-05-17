@@ -1,6 +1,14 @@
-import React, {Component} from "react";
-import {Button, Col, Container, Form, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
-import Header from "../header/Header";
+import React, {Component} from 'react';
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  OverlayTrigger,
+  Row,
+  Tooltip,
+} from 'react-bootstrap';
+import Header from '../header/Header';
 
 class AnalyseView extends Component {
   renderForm = () => {
@@ -150,6 +158,9 @@ class AnalyseView extends Component {
 
   renderUser = () => {
     const {user, estimation, errors} = this.props;
+    if (!user) {
+      return;
+    }
     const {friends, first_name, last_name, photo_400} = user;
     if (errors.userId) {
       return;
@@ -163,10 +174,7 @@ class AnalyseView extends Component {
         <>
           <Col xs={4}>
             <img
-                src={
-                  photo_400 ||
-                  "http://cs319323.vk.me/v319323049/70e1/2gddfIt0mvc.jpg"
-                }
+                src={photo_400}
                 alt="user"
                 width={"100%"}
                 className={"rounded-lg"}

@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import AnalyseResult from "./AnalyseResult";
-import {Accordion, Button, Col, Container, Row} from "react-bootstrap";
-import Header from "../header/Header";
+import AnalyseResult from './AnalyseResult';
+import {Accordion, Button, Col, Container, Row} from 'react-bootstrap';
+import Header from '../header/Header';
+import {compareLikedUsersDesc} from './utils';
 
-class ResultsView extends Component {
+class ResultListView extends Component {
     render() {
         const {results, onDelete} = this.props;
-        const res = results.map(({id, user, dateTime, likedUsers}, index) => {
+      const res = results.map(({id, user, dateTime, likedUsers}) => {
             return <AnalyseResult onDelete={() => onDelete(id)} user={user} date={new Date(dateTime)}
-                                  likedUsers={this.sortLikedUsersDesc(likedUsers)} index={index}/>
+                                  likedUsers={likedUsers.sort(
+                                      compareLikedUsersDesc)} id={id} id={id}/>
         });
         return (
             <>
@@ -27,7 +29,7 @@ class ResultsView extends Component {
     }
 
     renderContent = (res) => {
-        if (res.length === 0) {
+      if (!res.length) {
             return (<Col className={'text-center m-0'}>
                 <p>Список анализов пуст</p>
                 <div className={'py-3'}>
@@ -41,20 +43,6 @@ class ResultsView extends Component {
             </Accordion>
         </Col>);
     };
-
-    sortLikedUsersDesc = likedUsers => {
-        return likedUsers.sort((first, second) => {
-            const firstCount = first.likedPhotos.length + first.likedPosts.length;
-            const secondCount = second.likedPhotos.length + second.likedPosts.length;
-            if (firstCount > secondCount) {
-                return -1;
-            }
-            if (firstCount < secondCount) {
-                return 1;
-            }
-            return 0;
-        })
-    }
 }
 
-export default ResultsView;
+export default ResultListView;

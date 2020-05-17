@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Button, Container, Navbar} from "react-bootstrap";
-import logo from "../../img/logo/vk.png";
-import LocalStorageUtils from "../../utils/LocalStorageUtils";
-import getUrl from "../../utils/LocationUtils";
-import {Redirect} from "react-router-dom";
-import AnalysisService from "../../service/AnalysisService";
+import {Button, Container, Navbar} from 'react-bootstrap';
+import logo from '../../img/logo/vk.png';
+import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import getUrl from '../../utils/LocationUtils';
+import {Redirect} from 'react-router-dom';
+import AnalysisService from '../../service/AnalysisService';
+import VK, {Auth} from 'react-vk';
 
 class Header extends Component {
     state = {
@@ -32,13 +33,16 @@ class Header extends Component {
         }
         const url = 'https://oauth.vk.com/authorize' +
             '?client_id=7184308' +
-            '&display=popup' +
+            '&display=page' +
             '&response_type=token' +
-            '&v=5.102' +
+            '&v=5.103' +
             '&scope=friends,photos,offline' +
             '&redirect_uri=' + getUrl() + '/logIn';
+        return (<VK apiId={7184308}>
+            <Auth/>
+        </VK>);
 
-        return <Button variant="primary" className={"float-right"} size="sm" href={url}>Войти через ВКонтакте</Button>
+        // return <Button variant="primary" className={"float-right"} size="sm" href={url}>Войти через ВКонтакте</Button>
     };
 
     onResults = () => {
@@ -66,7 +70,6 @@ class Header extends Component {
             return (<Redirect to={'/progress'}/>)
         }
         return (
-
             <Navbar bg="dark" variant="dark" expand={"lg"}>
                 <Container>
                     <Navbar.Brand href="/">

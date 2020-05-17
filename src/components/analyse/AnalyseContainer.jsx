@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import AnalyseView from "./AnalyseView";
-import VkUserService from "../../service/vk/VkUserService";
-import AnalysisService from "../../service/AnalysisService";
-import {Redirect} from "react-router-dom";
-import LocalStorageUtils from "../../utils/LocalStorageUtils";
+import React, {Component} from 'react';
+import AnalyseView from './AnalyseView';
+import VkUserService from '../../service/vk/VkUserService';
+import AnalysisService from '../../service/AnalysisService';
+import {Redirect} from 'react-router-dom';
+import LocalStorageUtils from '../../utils/LocalStorageUtils';
 
 class AnalyseContainer extends Component {
   constructor(props) {
@@ -54,9 +54,8 @@ class AnalyseContainer extends Component {
   };
 
   loadUser = id => {
-    this.loadUserInfo(id)
-        .then(() => this.loadFriends(id))
-        .catch(() => {
+    this.loadUserInfo(id).then(({id}) => this.loadFriends(id)).catch((err) => {
+      console.log(err);
           this.setState(prev => ({
             errors: {
               ...prev.errors,
@@ -68,7 +67,6 @@ class AnalyseContainer extends Component {
 
   handleAnalyse = event => {
     event.preventDefault();
-    console.log("analyse");
     const {errors, userId, posts, photos} = this.state;
     if (Object.values(errors).includes(true)) {
       return;
@@ -127,21 +125,10 @@ class AnalyseContainer extends Component {
   };
 
   handleUserIdChange = event => {
-    const userId = Number(event.target.value);
-    if (!Number.isInteger(userId)) {
-      return;
-    }
-    const valid = userId > 0;
-    this.setState(prev => ({
+    const userId = event.target.value;
+    this.setState({
       userId,
-      errors: {
-        ...prev.errors,
-        userId: !valid
-      }
-    }));
-    if (!valid) {
-      return;
-    }
+    });
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
@@ -159,6 +146,7 @@ class AnalyseContainer extends Component {
           user: false
         }
       }));
+      return user;
     });
   };
 

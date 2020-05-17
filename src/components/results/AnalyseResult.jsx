@@ -1,27 +1,17 @@
 import React, {Component} from 'react';
-import {Accordion, Button, Card, Col, Container, Row} from "react-bootstrap";
-
+import {Accordion, Button, Card, Col, Container, Row} from 'react-bootstrap';
+import ResultContainer from './ResultContainer';
 
 class AnalyseResult extends Component {
-    renderLikedUsers = () => {
-        const {likedUsers} = this.props;
-        if (likedUsers.length === 0) {
-            return (<p>Пользователь не проявлял активность в виде "лайков".</p>)
-        }
-        return likedUsers.map(({user, likedPhotos, likedPosts}) => {
-            const total = likedPosts.length + likedPhotos.length;
-            return (
-                <p>{user.firstName} {user.lastName}: {total} <span className={'text-danger'}>&#9829;</span></p>
-            )
-        })
-    };
+    formatDate = date => date.toLocaleDateString('ru');
 
     render() {
-        const {user, date, index} = this.props;
+        const {user, date, id, likedUsers} = this.props;
         return (
             <Card>
                 <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey={index} className={'w-100 p-0'}>
+                    <Accordion.Toggle as={Button} variant="link" eventKey={id}
+                                      className={'w-100 p-0'}>
                         <Container>
                             <Row>
                                 <Col className={'pl-0'}>
@@ -29,16 +19,15 @@ class AnalyseResult extends Component {
                                 </Col>
                                 <Col>
                                     <p className={'text-right mb-1'}
-                                       xs={6}>{date.getDate()}/{date.getMonth() + 1}/{1900 + date.getYear()} {date.getHours()}:{date.getMinutes()}</p>
+                                       xs={6}>{this.formatDate(date)}</p>
                                 </Col>
                             </Row>
                         </Container>
-                        {/*{user.firstName} {user.lastName}, {date.getDay()}/{date.getMonth() + 1}/{1900 + date.getYear()} {date.getHours()}:{date.getMinutes()}*/}
                     </Accordion.Toggle>
                 </Card.Header>
-                <Accordion.Collapse eventKey={index}>
+                <Accordion.Collapse eventKey={id}>
                     <Card.Body>
-                        {this.renderLikedUsers()}
+                        <ResultContainer users={likedUsers} id={id}/>
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>

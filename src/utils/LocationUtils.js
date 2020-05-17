@@ -1,3 +1,3 @@
 export default function getUrl() {
-    return window.location.origin;
+  return window.location.origin;
 }
