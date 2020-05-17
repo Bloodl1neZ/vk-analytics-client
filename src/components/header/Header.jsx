@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {Button, Container, Navbar} from 'react-bootstrap';
-import logo from '../../img/logo/vk.png';
+import logo from '../../img/logo/logo-white.svg';
 import LocalStorageUtils from '../../utils/LocalStorageUtils';
 import getUrl from '../../utils/LocationUtils';
 import {Redirect} from 'react-router-dom';
 import AnalysisService from '../../service/AnalysisService';
-import VK, {Auth} from 'react-vk';
 
 class Header extends Component {
     state = {
@@ -38,11 +37,8 @@ class Header extends Component {
             '&v=5.103' +
             '&scope=friends,photos,offline' +
             '&redirect_uri=' + getUrl() + '/logIn';
-        return (<VK apiId={7184308}>
-            <Auth/>
-        </VK>);
-
-        // return <Button variant="primary" className={"float-right"} size="sm" href={url}>Войти через ВКонтакте</Button>
+        return <Button variant="primary" className={'float-right'} size="sm"
+                       href={url}>Войти через ВКонтакте</Button>;
     };
 
     onResults = () => {
@@ -70,7 +66,7 @@ class Header extends Component {
             return (<Redirect to={'/progress'}/>)
         }
         return (
-            <Navbar bg="dark" variant="dark" expand={"lg"}>
+            <Navbar bg="primary" variant="dark" expand={'lg'}>
                 <Container>
                     <Navbar.Brand href="/">
                         <img

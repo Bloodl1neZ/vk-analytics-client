@@ -15,15 +15,13 @@ class ResultListView extends Component {
         return (
             <>
                 <Header progress={true}/>
-                <div className={'lead'}>
-                    <Container>
-                        <div className={'py-4'}>
-                            <Row>
-                                {this.renderContent(res)}
-                            </Row>
-                        </div>
-                    </Container>
+              <Container>
+                <div className={'py-4'}>
+                  <Row>
+                    {this.renderContent(res)}
+                  </Row>
                 </div>
+              </Container>
             </>
         );
     }

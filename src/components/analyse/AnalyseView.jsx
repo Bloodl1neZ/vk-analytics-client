@@ -136,22 +136,20 @@ class AnalyseView extends Component {
     return (
         <>
           <Header progress={true}/>
-          <div className={"lead"}>
-            <Container>
-              <Row>
-                <Col md={4}>{this.renderForm()}</Col>
-                <Col md={8}>
-                  <Container>
-                    <div className={'py-5'}>
-                      <Row>
-                        {this.renderUser()}
-                      </Row>
-                    </div>
-                  </Container>
-                </Col>
-              </Row>
-            </Container>
-          </div>
+          <Container>
+            <Row>
+              <Col md={4}>{this.renderForm()}</Col>
+              <Col md={8}>
+                <Container>
+                  <div className={'py-5'}>
+                    <Row>
+                      {this.renderUser()}
+                    </Row>
+                  </div>
+                </Container>
+              </Col>
+            </Row>
+          </Container>
         </>
     );
   }

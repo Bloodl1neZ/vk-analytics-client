@@ -40,3 +40,30 @@
 .shadow:hover {
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
 }
+
+.bg-primary {
+    background-color: #4680c2 !important;
+}
+
+.text-primary {
+    color: #4680c2 !important;
+}
+
+.main-page-users-img {
+    margin-bottom: -180px;
+}
+
+@media only screen and (max-width: 768px) {
+    .main-page-users-img {
+        display: none;
+    }
+
+    .main-page-step {
+        display: none;
+    }
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}

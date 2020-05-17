@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import Header from "../header/Header";
-import {Button, Col, Container, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
-import LocalStorageUtils from "../../utils/LocalStorageUtils";
-import addressLineVk from "../../img/stages/vkcom.svg"
-import result from "../../img/stages/result.svg"
-import analysis from "../../img/stages/analiz.svg"
-import settings from "../../img/stages/search.svg"
+import Header from '../header/Header';
+import {Button, Col, OverlayTrigger, Row, Tooltip} from 'react-bootstrap';
+import LocalStorageUtils from '../../utils/LocalStorageUtils';
+import addressLineVk from '../../img/stages/link_new.png';
+import result from '../../img/stages/result_new.png';
+import analysis from '../../img/stages/analys_new.png';
+import settings from '../../img/stages/search_new.png';
+import users from '../../img/mainPage/main_page_users.png';
 
 class MainPageView extends Component {
     render() {
@@ -13,69 +14,98 @@ class MainPageView extends Component {
         return (
             <>
                 <Header progress={true}/>
-                <div className={'lead'}>
-                    <Container>
-                        <Row>
-                            <Col>
-                                <div className={'py-3'}>
-                                    <h1>Анализ активности пользователей ВКонтакте</h1>
-                                    <p><strong>VK Analysis</strong> предназначен для того,
-                                        чтобы узнать, кого "лайкает" пользователь больше всего.</p>
-                                    <div className="text-center py-2">
+                <div>
+                    <div className={'container-fluid bg-primary p-0'}>
+                        <div className={'container'}>
+                            <div className={'row py-5'}>
+                                <div className={'col-12 col-md-6 text-light'}>
+                                    <h1 className={'pb-3'}>Анализ пользователей
+                                        ВКонтакте</h1>
+                                    <h5 className={'font-weight-normal pb-3'}>
+                                        <strong>VK
+                                            Analysis</strong> предназначен для
+                                        того,
+                                        чтобы узнать, какие фотографии и
+                                        посты друзей "лайкнул" пользователь</h5>
+                                    <div className="py-4">
                                         {this.renderButton()}
                                     </div>
                                 </div>
-
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <h2 className={"py-3"}>Как это работает?</h2>
-                            </Col>
-                        </Row>
-                        <div className="py-5">
+                                <div className="col-md-6 p-3 main-page-step">
+                                    <img src={users} alt="users"
+                                         className={'w-100 main-page-users-img'}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={'container text-primary pt-4'}>
+                        <div className={'row py-5'}>
+                            <div className="col">
+                                <h2>Как это работает?</h2>
+                            </div>
+                        </div>
+                        <div className="pb-5">
                             <Row>
-                                <Col md={5}>
-                                    <img src={addressLineVk} alt="address-line"/>
-                                </Col>
-                                <Col md={7}>
-                                    <p>1. Вводим id пользователя из адресной строки.</p>
+                                <div className="col-md-6 p-3 main-page-step">
+                                    <img className={'w-100'} src={addressLineVk}
+                                         alt="address-line"/>
+                                </div>
+                                <Col md={6}>
+                                    <div className={'d-flex fill'}>
+                                        <h5 className={'font-weight-normal align-self-center'}>1.
+                                            Вводим id пользователя из адресной
+                                            строки.</h5>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
                         <div className="py-5">
                             <Row>
-                                <Col md={7}>
-                                    <p>2. Настраиваем количество первых постов
-                                        и фотографий, которые будем проверять.</p>
+                                <Col md={6}>
+                                    <div className={'d-flex fill'}>
+                                        <h5 className={'font-weight-normal align-self-center'}>2.
+                                            Настраиваем количество первых постов
+                                            и фотографий, которые будем
+                                            проверять.</h5>
+                                    </div>
                                 </Col>
-                                <Col md={5}>
-                                    <img src={settings} alt="settings"/>
+                                <div className="col-md-6 p-3 main-page-step">
+                                    <img className={'w-100'} src={settings}
+                                         alt="settings"/>
+                                </div>
+                            </Row>
+                        </div>
+                        <div className="py-5">
+                            <Row>
+                                <div className="col-md-6 p-3 main-page-step">
+                                    <img className={'w-100'} src={analysis}
+                                         alt="analysing"/>
+                                </div>
+                                <Col md={6}>
+                                    <div className={'d-flex fill'}>
+                                        <h5 className={'font-weight-normal align-self-center'}>3.
+                                            Производится анализ друзей
+                                            введенного пользователя.</h5>
+                                    </div>
                                 </Col>
                             </Row>
                         </div>
                         <div className="py-5">
                             <Row>
-                                <Col md={5}>
-                                    <img src={analysis} alt="analysing"/>
+                                <Col md={6}>
+                                    <div className={'d-flex fill'}>
+                                        <h5 className={'font-weight-normal align-self-center'}>4.
+                                            Profit! Теперь можете посмотреть,
+                                            кого "лайкал" пользователь.</h5>
+                                    </div>
                                 </Col>
-                                <Col md={7}>
-                                    <p>3. Производится анализ друзей введенного пользователя.</p>
-                                </Col>
+                                <div className="col-md-6 p-3 main-page-step">
+                                    <img className={'w-100'} src={result}
+                                         alt="result"/>
+                                </div>
                             </Row>
                         </div>
-                        <div className="py-5">
-                            <Row>
-                                <Col md={7}>
-                                    <p>4. Profit! Теперь можете посмотреть, кого "лайкал" пользователь.</p>
-                                </Col>
-                                <Col md={5}>
-                                    <img src={result} alt="result"/>
-                                </Col>
-                            </Row>
-                        </div>
-
-                    </Container>
+                    </div>
                 </div>
             </>
         );
@@ -85,9 +115,11 @@ class MainPageView extends Component {
 
     renderButton = () => {
         if (LocalStorageUtils.getToken()) {
-            return (<Button variant={"primary"} onClick={
+            return (<Button variant={'light'} onClick={
                 this.props.toAnalyse
-            } size={"lg"}>Анализировать</Button>)
+            } size={'lg'}>
+                <span className={'text-primary'}>Анализировать</span>
+            </Button>)
         }
         return (
             <OverlayTrigger
@@ -97,12 +129,12 @@ class MainPageView extends Component {
         <span className="d-inline-block">
           <Button
               style={{pointerEvents: "none"}}
-              variant="primary"
+              variant="light"
               type="submit"
               disabled
               size={"lg"}
           >
-            Анализировать
+            <span className={'text-primary'}>Анализировать</span>
           </Button>
         </span>
             </OverlayTrigger>
