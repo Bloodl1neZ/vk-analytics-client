@@ -2,7 +2,7 @@ import React from 'react';
 import {Spinner} from 'react-bootstrap';
 
 export const LoadingPageView = () => {
-  return (<div className="text-center lead absolute-center">
+  return (<div className="text-center absolute-center">
     <div className="m-auto">
       <Spinner animation="border" role="status">
         <span className="sr-only">Loading...</span>

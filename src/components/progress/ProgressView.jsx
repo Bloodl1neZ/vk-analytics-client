@@ -8,7 +8,7 @@ class ProgressView extends Component {
     return (
         <>
           <Header progress={false}/>
-          <div className="text-center lead absolute-center">
+          <div className="text-center absolute-center">
             <div className="m-auto">
               <Spinner animation="border" role="status">
                 <span className="sr-only">Loading...</span>

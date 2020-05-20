@@ -67,11 +67,11 @@ class AnalyseContainer extends Component {
 
   handleAnalyse = event => {
     event.preventDefault();
-    const {errors, userId, posts, photos} = this.state;
+    const {errors, user, posts, photos} = this.state;
     if (Object.values(errors).includes(true)) {
       return;
     }
-    AnalysisService.analyse(userId, posts, photos)
+    AnalysisService.analyse(user.id, posts, photos)
         .then(({id}) => {
           this.setState({
             progressId: id
